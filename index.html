@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Инструкции для Антона</title>
+<meta name="description" content="Как создать @username и поставить облачный пароль в Telegram. Ссылка на инструкцию по боту.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&family=Unbounded:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FBFCFF; --grid:#DCE6FB; --ink:#1B2340; --muted:#5A6482;
+  --blue:#2F6BFF; --blue-soft:#E6EEFF; --marker:#FFE45C; --green:#1FA971; --red:#E5484D;
+  --card:#FFFFFF; --line:#C9D6F5; --on-blue:#FFFFFF; --r:18px;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --paper:#141A2E; --grid:#1F2842; --ink:#EEF2FF; --muted:#A3AECD;
+    --blue:#7AA2FF; --blue-soft:#22305A; --marker:#E8C93A; --green:#4FD39A; --red:#FF7A7E;
+    --card:#1B2340; --line:#2E3A62; --on-blue:#0E1430;
+  }
+}
+*{box-sizing:border-box}
+body{margin:0;color:var(--ink);font:400 17px/1.55 "Golos Text",system-ui,sans-serif;background-color:var(--paper);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:24px 24px}
+.wrap{max-width:860px;margin:0 auto;padding:0 16px}
+h1,h2,h3{font-family:"Unbounded",sans-serif;line-height:1.15;margin:0}
+h1{font-size:clamp(30px,7vw,52px);font-weight:800}
+h2{font-size:clamp(22px,4.6vw,30px);font-weight:700;margin-bottom:6px}
+h3{font-size:16px;font-weight:700}
+a{color:var(--blue)}
+a:focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:8px}
+header{padding:44px 0 10px}
+.kicker{display:inline-block;font-weight:600;font-size:14px;color:var(--muted);margin-bottom:14px}
+.lead{font-size:clamp(18px,3.4vw,21px);max-width:34em;margin-top:14px}
+.big{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:22px;padding:18px 20px;border-radius:var(--r);
+  background:var(--blue);color:var(--on-blue);text-decoration:none;font-weight:700;font-size:18px}
+.big small{display:block;font-weight:500;font-size:14px;opacity:.9}
+section{padding:36px 0 6px}
+.sub{color:var(--muted);margin:0 0 16px}
+.steps{counter-reset:s;list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.steps li{counter-increment:s;position:relative;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px 14px 58px}
+.steps li::before{content:counter(s);position:absolute;left:14px;top:12px;width:32px;height:32px;border-radius:50%;
+  display:grid;place-items:center;background:var(--marker);color:#1B2340;font:800 15px "Unbounded",sans-serif}
+.btn{display:inline-block;background:var(--blue-soft);color:var(--blue);font-weight:700;padding:1px 8px;border-radius:8px}
+.note{border:1px solid var(--green);background:var(--card);border-radius:var(--r);padding:12px 16px;margin-top:12px}
+.note::before{content:"💡 "}
+.note.warn{border-color:var(--red)}
+.note.warn::before{content:"⚠️ "}
+footer{padding:40px 0 60px;color:var(--muted);font-size:15px}
+@media (max-width:520px){body{font-size:16px}.steps li{padding-left:52px}}
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <span class="kicker">Инструкции для Антона</span>
+  <h1>Настрой Telegram за 10 минут</h1>
+  <p class="lead">Две настройки: имя, по которому тебя найдут, и пароль, который защитит аккаунт от взлома.</p>
+  <a class="big" href="bot/"><span>Как пользоваться ботом<small>Учёба, Google, сайты, команды</small></span><span>→</span></a>
+</header>
+
+<main class="wrap">
+
+<section id="username">
+  <h2>Как создать @username</h2>
+  <p class="sub">По нему тебя найдут, не зная номера телефона.</p>
+  <ol class="steps">
+    <li>Открой <span class="btn">Настройки</span>.</li>
+    <li>Нажми <span class="btn">Имя пользователя</span>.</li>
+    <li>Введи имя латиницей, от 5 символов. Например, <b>anton_ignatov</b>.</li>
+    <li>Дождись надписи <b>«Имя доступно»</b>. Если имя занято, придумай другое.</li>
+    <li>Нажми <span class="btn">Готово</span>.</li>
+  </ol>
+</section>
+
+<section id="password">
+  <h2>Как подключить облачный пароль</h2>
+  <p class="sub">Даже если кто-то узнает код из SMS, без пароля он не войдёт.</p>
+  <ol class="steps">
+    <li>Открой <span class="btn">Настройки</span> → <span class="btn">Конфиденциальность</span> → <span class="btn">Облачный пароль</span>.</li>
+    <li>Нажми <span class="btn">Установить пароль</span>.</li>
+    <li>Введи пароль два раза.</li>
+    <li>Добавь подсказку. Она не должна выдавать сам пароль.</li>
+    <li>Введи свою почту.</li>
+    <li>Введи код из письма.</li>
+    <li>Нажми <span class="btn">Готово</span>.</li>
+  </ol>
+  <div class="note">Запиши пароль на бумагу и спрячь дома.</div>
+  <div class="note warn">Никому не говори пароль и коды из SMS. Настоящая поддержка Telegram их не спрашивает.</div>
+</section>
+
+</main>
+
+<footer class="wrap">Бот: <a href="https://t.me/my_ultraaaa_bot">@my_ultraaaa_bot</a></footer>
+</body>
+</html>
