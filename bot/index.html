@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Как пользоваться ботом</title>
+<meta name="description" content="Инструкция для Антона: учёба, поиск, Google, сайты и команды бота @my_ultraaaa_bot.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&family=Unbounded:wght@500;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FBFCFF; --grid:#DCE6FB; --ink:#1B2340; --muted:#5A6482;
+  --blue:#2F6BFF; --blue-soft:#E6EEFF; --marker:#FFE45C; --red:#E5484D; --green:#1FA971;
+  --card:#FFFFFF; --line:#C9D6F5; --bubble:#EFFDDE; --bubble-ink:#16301A;
+  --r:18px; --on-blue:#FFFFFF;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --paper:#141A2E; --grid:#1F2842; --ink:#EEF2FF; --muted:#A3AECD;
+    --blue:#7AA2FF; --blue-soft:#22305A; --marker:#E8C93A; --red:#FF7A7E; --green:#4FD39A;
+    --card:#1B2340; --line:#2E3A62; --bubble:#25402B; --bubble-ink:#E4F7E6; --on-blue:#0E1430;
+  }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{transition:none!important}}
+body{
+  margin:0; color:var(--ink); font:400 17px/1.55 "Golos Text",system-ui,sans-serif;
+  background-color:var(--paper);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:24px 24px;
+}
+.wrap{max-width:860px;margin:0 auto;padding:0 16px}
+h1,h2,h3{font-family:"Unbounded",sans-serif;line-height:1.15;margin:0}
+h1{font-size:clamp(30px,7vw,54px);font-weight:800;letter-spacing:-.01em}
+h2{font-size:clamp(22px,4.6vw,32px);font-weight:700;margin-bottom:6px}
+h3{font-size:17px;font-weight:700}
+p{margin:.5em 0}
+a{color:var(--blue)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:8px}
+mark{background:var(--marker);color:#1B2340;padding:0 .2em;border-radius:4px}
+code,kbd{font-family:"JetBrains Mono",monospace;font-size:.92em}
+
+/* hero */
+header{padding:44px 0 18px}
+.kicker{display:inline-block;font-weight:600;font-size:14px;color:var(--muted);margin-bottom:14px}
+.lead{font-size:clamp(18px,3.4vw,21px);max-width:36em;margin-top:16px}
+.botlink{display:inline-flex;align-items:center;gap:10px;margin-top:18px;padding:12px 18px;border-radius:999px;
+  background:var(--blue);color:var(--on-blue);font-weight:700;text-decoration:none}
+.chat{margin-top:26px;display:grid;gap:10px;max-width:520px}
+
+/* bubbles = signature */
+.msg{position:relative;justify-self:end;max-width:92%;background:var(--bubble);color:var(--bubble-ink);
+  padding:12px 14px 12px 14px;border-radius:var(--r) var(--r) 6px var(--r);box-shadow:0 1px 0 rgba(0,0,0,.08);
+  font-size:16px}
+.msg.bot{justify-self:start;background:var(--card);color:var(--ink);border-radius:var(--r) var(--r) var(--r) 6px;border:1px solid var(--line)}
+.msg .copy{display:block;margin-top:8px;font:600 13px "Golos Text",sans-serif;color:var(--blue);background:none;border:0;padding:0;cursor:pointer}
+.msg .copy.done{color:var(--green)}
+.foot{display:block;border-top:1px solid var(--line);margin-top:8px;padding-top:6px;font-size:14px;color:var(--muted)}
+
+/* nav */
+nav{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--paper) 92%,transparent);backdrop-filter:blur(6px);
+  border-bottom:1px solid var(--line);margin-top:22px}
+nav .wrap{display:flex;gap:8px;overflow-x:auto;padding-top:10px;padding-bottom:10px;scrollbar-width:none}
+nav a{flex:0 0 auto;text-decoration:none;color:var(--ink);font-weight:600;font-size:14px;padding:7px 12px;border-radius:999px;
+  background:var(--card);border:1px solid var(--line)}
+
+section{padding:40px 0 8px;scroll-margin-top:60px}
+.sub{color:var(--muted);margin-bottom:18px}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(250px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px}
+.card h3{margin-bottom:8px}
+.card .msg{justify-self:stretch;max-width:100%;margin-top:10px}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:2px 9px;border-radius:999px;background:var(--blue-soft);color:var(--blue);margin-bottom:8px}
+
+.steps{counter-reset:s;list-style:none;padding:0;margin:0;display:grid;gap:12px}
+.steps li{counter-increment:s;position:relative;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px 14px 58px}
+.steps li::before{content:counter(s);position:absolute;left:14px;top:12px;width:32px;height:32px;border-radius:50%;
+  display:grid;place-items:center;background:var(--marker);color:#1B2340;font:800 15px "Unbounded",sans-serif}
+.steps .msg{max-width:100%;justify-self:stretch;margin-top:10px}
+
+.rule{border-left:5px solid var(--red);background:var(--card);border-radius:0 var(--r) var(--r) 0;padding:12px 16px;margin:10px 0}
+.rule.ok{border-color:var(--green)}
+
+table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+td{padding:12px 14px;border-top:1px solid var(--line);vertical-align:top}
+tr:first-child td{border-top:0}
+td:first-child{white-space:nowrap;font-family:"JetBrains Mono",monospace;font-weight:500;color:var(--blue);width:1%}
+
+footer{padding:40px 0 60px;color:var(--muted);font-size:15px}
+@media (max-width:520px){body{font-size:16px}.steps li{padding-left:52px}td{padding:10px}}
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <span class="kicker">Инструкция для Антона · 8 класс</span>
+  <h1>Твой бот умеет больше, чем кажется</h1>
+  <p class="lead">Это ИИ-помощник в Telegram. Он объясняет темы, ищет в интернете, делает презентации, таблицы, опросы и даже сайты. Пиши ему как человеку: текстом или голосовым.</p>
+  <a class="botlink" href="https://t.me/my_ultraaaa_bot">Открыть бота →</a>
+
+  <div class="chat" aria-label="Пример переписки">
+    <div class="msg">Объясни теорему Пифагора на примере лестницы, которая стоит у стены</div>
+    <div class="msg bot">Представь: лестница — это гипотенуза, стена и пол — катеты. Если лестница 5 м, а низ стоит в 3 м от стены, то верх достаёт до высоты 4 м, потому что 3² + 4² = 5²…
+      <span class="foot">💬 5ч 98% · ⏱ 4h 3m | лимит 90%</span></div>
+  </div>
+</header>
+
+<nav aria-label="Разделы"><div class="wrap">
+  <a href="#how">Как писать</a><a href="#school">Учёба</a><a href="#search">Поиск</a><a href="#google">Google</a>
+  <a href="#sites">Сайты</a><a href="#commands">Команды</a><a href="#limit">Лимит</a><a href="#safe">Безопасность</a>
+</div></nav>
+
+<main class="wrap">
+
+<section id="how">
+  <h2>Как писать боту</h2>
+  <p class="sub">Чем точнее просьба, тем лучше ответ.</p>
+  <div class="grid">
+    <div class="card"><h3>Скажи, что нужно на выходе</h3><p>«Сделай презентацию на 8 слайдов», а не просто «расскажи про Петра I».</p></div>
+    <div class="card"><h3>Голосовые тоже можно</h3><p>Бот сам переведёт голос в текст. Удобно, когда лень печатать.</p></div>
+    <div class="card"><h3>Проси переделать</h3><p>«Короче», «проще», «добавь картинку», «как для пятиклассника». Он не обидится.</p></div>
+    <div class="card"><h3>Пришли фото</h3><p>Сфотографируй задачу из учебника или доску — бот прочитает и разберёт.</p></div>
+  </div>
+</section>
+
+<section id="school">
+  <h2>Учёба</h2>
+  <p class="sub">Лучше всего просить <mark>объяснить</mark>, а не просто дать ответ. На контрольной бота рядом не будет, а понимание останется.</p>
+  <div class="grid">
+    <div class="card"><span class="tag">Алгебра</span><h3>Квадратные уравнения</h3>
+      <div class="msg">Реши x² − 5x + 6 = 0 по шагам и объясни, откуда берётся дискриминант<button class="copy">Скопировать</button></div></div>
+    <div class="card"><span class="tag">Геометрия</span><h3>Площади и подобие</h3>
+      <div class="msg">Вот фото задачи. Не решай сразу — дай подсказку, с чего начать<button class="copy">Скопировать</button></div></div>
+    <div class="card"><span class="tag">Физика</span><h3>Теплота и электричество</h3>
+      <div class="msg">Объясни закон Ома на примере зарядки телефона<button class="copy">Скопировать</button></div></div>
+    <div class="card"><span class="tag">Химия</span><h3>Первый год химии</h3>
+      <div class="msg">Как по таблице Менделеева понять валентность? Дай 5 примеров и проверь меня<button class="copy">Скопировать</button></div></div>
+    <div class="card"><span class="tag">Русский</span><h3>Синтаксис</h3>
+      <div class="msg">Объясни, где ставить запятые при обособленных определениях, и дай 5 предложений потренироваться<button class="copy">Скопировать</button></div></div>
+    <div class="card"><span class="tag">Литература</span><h3>«Капитанская дочка», «Ревизор», «Мцыри»</h3>
+      <div class="msg">Помоги составить план сочинения про Гринёва и Швабрина. Сам текст напишу я<button class="copy">Скопировать</button></div></div>
+    <div class="card"><span class="tag">История</span><h3>Россия XVIII века</h3>
+      <div class="msg">Сделай таблицу реформ Петра I: что изменил, зачем и что из этого вышло<button class="copy">Скопировать</button></div></div>
+    <div class="card"><span class="tag">Английский</span><h3>Разговорная практика</h3>
+      <div class="msg">Давай поговорим на английском про игры. Исправляй мои ошибки после каждого ответа<button class="copy">Скопировать</button></div></div>
+    <div class="card"><span class="tag">Информатика</span><h3>Python и системы счисления</h3>
+      <div class="msg">Объясни перевод числа 45 в двоичную систему и напиши программу на Python, которая это делает<button class="copy">Скопировать</button></div></div>
+    <div class="card"><span class="tag">Подготовка</span><h3>Тест перед контрольной</h3>
+      <div class="msg">Устрой мне тест из 10 вопросов по биологии: строение сердца. По одному вопросу, жди мой ответ<button class="copy">Скопировать</button></div></div>
+  </div>
+</section>
+
+<section id="search">
+  <h2>Поиск в интернете</h2>
+  <p class="sub">Бот сам ищет и пишет, откуда взял информацию.</p>
+  <div class="grid">
+    <div class="card"><div class="msg">Найди 3 интересных факта о Байкале для доклада и дай ссылки на источники<button class="copy">Скопировать</button></div></div>
+    <div class="card"><div class="msg">Сравни два телефона до 30 000 ₽: что лучше для игр и камеры<button class="copy">Скопировать</button></div></div>
+    <div class="card"><div class="msg">Какие олимпиады по информатике есть для 8 класса и когда регистрация?<button class="copy">Скопировать</button></div></div>
+  </div>
+  <div class="rule ok">Проверяй важное по ссылкам: бот тоже может ошибиться.</div>
+</section>
+
+<section id="google">
+  <h2>Google: документы, презентации, таблицы</h2>
+  <p class="sub">Бот подключён к твоему Google. Всё, что он создаёт, появляется у тебя на Google Диске, и ты можешь это редактировать.</p>
+  <div class="grid">
+    <div class="card"><span class="tag">Презентации</span><h3>Доклад за 5 минут</h3>
+      <div class="msg">Сделай Google-презентацию «Тепловые двигатели» на 8 слайдов: заголовки, короткий текст, план выступления. Пришли ссылку<button class="copy">Скопировать</button></div></div>
+    <div class="card"><span class="tag">Документы</span><h3>Реферат и конспект</h3>
+      <div class="msg">Создай Google-документ с конспектом параграфа про клетку. Вот фото страниц<button class="copy">Скопировать</button></div></div>
+    <div class="card"><span class="tag">Таблицы</span><h3>Расписание и оценки</h3>
+      <div class="msg">Создай Google-таблицу: мои оценки по предметам за четверть и средний балл, который считается сам<button class="copy">Скопировать</button></div></div>
+    <div class="card"><span class="tag">Формы</span><h3>Опрос для класса</h3>
+      <div class="msg">Сделай Google-форму «Куда поехать на экскурсию»: 5 вопросов, варианты ответов. Пришли ссылку, чтобы я разослал<button class="copy">Скопировать</button></div></div>
+    <div class="card"><span class="tag">Почта</span><h3>Письма</h3>
+      <div class="msg">Покажи 3 последних письма и скажи, есть ли что-то важное<button class="copy">Скопировать</button></div></div>
+    <div class="card"><span class="tag">Календарь</span><h3>Не забыть</h3>
+      <div class="msg">Поставь в календарь контрольную по алгебре в четверг и напоминание за день<button class="copy">Скопировать</button></div></div>
+  </div>
+  <div class="rule">Письмо бот отправит, только когда ты сам напишешь «ок». Так же с удалением файлов.</div>
+</section>
+
+<section id="sites">
+  <h2>Как сделать свой сайт</h2>
+  <p class="sub">Сайт бесплатно появится в интернете, ссылку можно отправить кому угодно.</p>
+  <ol class="steps">
+    <li><h3>Придумай, про что сайт</h3><p>Идеи: твоя игра, портфолио рисунков, страница класса, гайд по Minecraft, тест «Какой ты химический элемент», сайт для доклада.</p></li>
+    <li><h3>Напиши боту</h3>
+      <div class="msg">Сделай сайт-викторину «Знаешь ли ты физику 8 класса?»: 10 вопросов, в конце результат. Яркий дизайн, чтобы хорошо смотрелся на телефоне. Опубликуй на GitHub Pages и пришли ссылку<button class="copy">Скопировать</button></div></li>
+    <li><h3>Подожди 1–2 минуты</h3><p>Бот сам выложит сайт и пришлёт ссылку вида <code>antonignatov2026-byte.github.io/название</code>.</p></li>
+    <li><h3>Попроси правки</h3>
+      <div class="msg">Сделай фон тёмным, добавь кнопку «Пройти заново» и мою подпись внизу<button class="copy">Скопировать</button></div></li>
+    <li><h3>Поделись ссылкой</h3><p>Сайт открывается на любом телефоне и компьютере.</p></li>
+  </ol>
+  <div class="rule">Сайт видят все в интернете. Не пиши на нём телефон, адрес, пароли и не выкладывай личные фото.</div>
+</section>
+
+<section id="commands">
+  <h2>Команды</h2>
+  <p class="sub">Отправь команду боту как обычное сообщение.</p>
+  <table>
+    <tr><td>/new</td><td>Начать с чистого листа. Нужна, если бот тормозит, путается или ты начинаешь новую тему.</td></tr>
+    <tr><td>/stop</td><td>Остановить бота, если он делает не то или слишком долго.</td></tr>
+    <tr><td>/status</td><td>Узнать, сколько бот уже помнит из разговора и какая у него модель.</td></tr>
+    <tr><td>/compact</td><td>Сжать длинный разговор, чтобы бот работал быстрее и не забыл главное.</td></tr>
+    <tr><td>/help</td><td>Список всех команд.</td></tr>
+  </table>
+</section>
+
+<section id="limit">
+  <h2>Что значит строчка внизу</h2>
+  <div class="chat"><div class="msg bot">Готово!<span class="foot">💬 5ч 98% · ⏱ 4h 3m | лимит 90% · ⏱ 5d 3h</span></div></div>
+  <p><b>5ч 98%</b> — сколько осталось на ближайшие 5 часов. <b>⏱ 4h 3m</b> — через сколько этот запас обновится.</p>
+  <p><b>лимит 90%</b> — запас на неделю. Когда он близок к нулю, бот перестанет отвечать до обновления.</p>
+  <div class="rule ok">Сайты и презентации тратят больше всего. Болтовня ни о чём тоже съедает запас.</div>
+</section>
+
+<section id="safe">
+  <h2>Безопасность</h2>
+  <div class="grid">
+    <div class="card"><h3>Пароли и коды</h3><p>Никогда не присылай боту пароли, коды из SMS и данные карт.</p></div>
+    <div class="card"><h3>Странные письма</h3><p>Если в письме просят что-то сделать «срочно», сначала покажи его папе.</p></div>
+    <div class="card"><h3>Бот ошибается</h3><p>Перепроверяй даты, формулы и ответы перед контрольной.</p></div>
+  </div>
+</section>
+
+<section id="trouble">
+  <h2>Если что-то не работает</h2>
+  <ol class="steps">
+    <li><h3>Бот долго молчит или пишет «AI service is having trouble»</h3><p>Подожди минуту и отправь <code>/new</code>, потом повтори просьбу.</p></li>
+    <li><h3>Не помогло</h3><p>Напиши папе или Стасу.</p></li>
+  </ol>
+</section>
+
+</main>
+
+<footer class="wrap">Бот: <a href="https://t.me/my_ultraaaa_bot">@my_ultraaaa_bot</a> · Другие инструкции: <a href="../">Telegram-настройки</a></footer>
+
+<script>
+document.querySelectorAll('.copy').forEach(function(b){
+  b.addEventListener('click',function(){
+    var t=b.parentElement.firstChild.textContent.trim();
+    var done=function(){b.textContent='Скопировано ✓';b.classList.add('done');setTimeout(function(){b.textContent='Скопировать';b.classList.remove('done')},1600)};
+    if(navigator.clipboard){navigator.clipboard.writeText(t).then(done,function(){})}
+  });
+});
+</script>
+</body>
+</html>
