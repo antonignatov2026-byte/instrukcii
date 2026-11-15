@@ -80,8 +80,10 @@ section{padding:40px 0 8px;scroll-margin-top:60px}
   display:grid;place-items:center;background:var(--marker);color:#1B2340;font:800 15px "Unbounded",sans-serif}
 .steps .msg{max-width:100%;justify-self:stretch;margin-top:10px}
 
-.rule{border-left:5px solid var(--red);background:var(--card);border-radius:0 var(--r) var(--r) 0;padding:12px 16px;margin:10px 0}
+.rule{border:1px solid var(--red);background:var(--card);border-radius:var(--r);padding:12px 16px;margin:10px 0}
+.rule::before{content:"⚠️ "}
 .rule.ok{border-color:var(--green)}
+.rule.ok::before{content:"💡 "}
 
 table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
 td{padding:12px 14px;border-top:1px solid var(--line);vertical-align:top}
